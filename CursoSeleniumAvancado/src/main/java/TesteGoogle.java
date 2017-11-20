@@ -7,7 +7,7 @@ public class TesteGoogle {
 
 	@Test
 	public void test() {
-		// System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("https://google.com");
 		Assert.assertEquals("Google", driver.getTitle());
