@@ -1,6 +1,7 @@
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -116,8 +117,16 @@ public class TesteCampoTreinamento {
 		WebElement botao = driver.findElement(By.id("buttonSimple"));
 		botao.click();
 		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
-		driver.quit();
-		
+		driver.quit();		
 	}
+	
+	@Test
+	@Ignore
+	public void deveInteragirComLinks(){
+		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		driver.findElement(By.linkText("Voltar")).click();
+	} 
 
 }
