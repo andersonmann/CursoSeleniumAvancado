@@ -127,6 +127,15 @@ public class TesteCampoTreinamento {
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		driver.findElement(By.linkText("Voltar")).click();
+	}
+	
+	@Test
+	public void deveBuscarTextosNaPagina(){
+		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo de Treinamento"));
+		
 	} 
 
 }
