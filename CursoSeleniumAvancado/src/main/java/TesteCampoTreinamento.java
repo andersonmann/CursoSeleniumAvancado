@@ -13,7 +13,7 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void testeTextField() throws InterruptedException {
-		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Anderson Mann");
@@ -24,7 +24,7 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void deveInteragirComTextArea() throws InterruptedException {
-		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("teste");
@@ -35,7 +35,7 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void deveInteragirComRadioButton() throws InterruptedException {
-		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		driver.findElement(By.id("elementosForm:sexo:0")).click();
@@ -46,7 +46,7 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void deveInteragirComCheckBox() throws InterruptedException {
-		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
@@ -57,7 +57,7 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void deveInteragirComCombo() throws InterruptedException {
-		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
@@ -71,7 +71,7 @@ public class TesteCampoTreinamento {
 	}
 
 	@Test
-	public void deveVerificarValoresCombo(){
+	public void deveVerificarValoresCombo() {
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
@@ -91,7 +91,7 @@ public class TesteCampoTreinamento {
 	}
 
 	@Test
-	public void deveVerificarValoresComboMultiplo(){
+	public void deveVerificarValoresComboMultiplo() {
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		WebElement element = driver.findElement(By.id("elementosForm:esportes"));
@@ -99,43 +99,49 @@ public class TesteCampoTreinamento {
 		combo.selectByVisibleText("Natacao");
 		combo.selectByVisibleText("Corrida");
 		combo.selectByVisibleText("O que eh esporte?");
-		
+
 		List<WebElement> allSelectOptins = combo.getAllSelectedOptions();
 		Assert.assertEquals(3, allSelectOptins.size());
-		
+
 		combo.deselectByVisibleText("Corrida");
-		allSelectOptins =  combo.getAllSelectedOptions();
+		allSelectOptins = combo.getAllSelectedOptions();
 		Assert.assertEquals(2, allSelectOptins.size());
 		driver.quit();
 	}
-	
+
 	@Test
-	public void deveInteragirComBotoes(){
-		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+	public void deveInteragirComBotoes() {
+		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		WebElement botao = driver.findElement(By.id("buttonSimple"));
 		botao.click();
 		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
-		driver.quit();		
+		driver.quit();
 	}
-	
+
 	@Test
-	@Ignore
-	public void deveInteragirComLinks(){
-		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+	public void deveInteragirComLinks() {
+		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		driver.findElement(By.linkText("Voltar")).click();
+		Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
+		driver.quit();
 	}
-	
+
+	// Div, span
 	@Test
-	public void deveBuscarTextosNaPagina(){
-		System.setProperty("webdriver.gecko.driver","C:\\Selenium\\geckodriver.exe");
+	public void deveBuscarTextosNaPagina() {
+		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo de Treinamento"));
-		
-	} 
+		// Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo
+		// de Treinamento"));
+		Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
+		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...",
+				driver.findElement(By.className("facilAchar")).getText());
+		driver.quit();
+	}
 
 }
