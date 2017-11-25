@@ -9,10 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
- * 
- */
-
-/**
  * @author Anderson
  *
  */
@@ -74,5 +70,4 @@ public class TestAlert {
 		assertEquals(":D", alerta.getText());
 		alerta.accept();	
 	}
-
 }
