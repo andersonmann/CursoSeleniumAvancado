@@ -12,7 +12,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TesteCadastro {
 	private WebDriver driver;
-	private DSL dsl;
+	private DSL dsl;	
+	private CampoTreinamentoPage page;
 
 	@Before
 	public void inicializa() {
@@ -21,6 +22,7 @@ public class TesteCadastro {
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
+		page = new CampoTreinamentoPage(driver);
 	}
 
 	@After
@@ -30,11 +32,12 @@ public class TesteCadastro {
 
 	@Test
 	public void deveRealizarCadastroComSucesso() {
-		dsl.escrever("elementosForm:nome", "Wagner");
-		dsl.escrever("elementosForm:sobrenome", "Costa");
-		dsl.clicarRadio("elementosForm:sexo:0");
-		dsl.clicarRadio("elementosForm:comidaFavorita:2");
-		dsl.selecionarCombo("elementosForm:escolaridade", "Mestrado");
+		page.setNome("Anderson");
+		page.setSobrenome("Mann");
+		page.setSexoMasculino();
+		page.setComidaFavoritaPizza();
+		page.setEscolaridade("Mestrado");
+		
 		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
 		dsl.clicarBotao("elementosForm:cadastrar");
 

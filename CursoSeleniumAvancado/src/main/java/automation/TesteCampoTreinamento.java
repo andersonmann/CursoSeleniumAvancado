@@ -17,6 +17,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class TesteCampoTreinamento {
 	private WebDriver driver;
 	private DSL dsl;
+	
 
 	@Before
 	public void inicializa(){
