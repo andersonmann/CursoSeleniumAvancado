@@ -91,5 +91,19 @@ public class TesteCadastro {
 		page.cadastrar();
 		assertEquals("Voce faz esporte ou nao?", dsl.alertaObterTextoEAceita());
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
