@@ -12,7 +12,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TesteCadastro {
 	private WebDriver driver;
-	private DSL dsl;
 	private CampoTreinamentoPage page;
 
 	@Before
@@ -21,7 +20,6 @@ public class TesteCadastro {
 		driver = new FirefoxDriver();
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
 		page = new CampoTreinamentoPage(driver);
 	}
 
@@ -48,62 +46,5 @@ public class TesteCadastro {
 		assertEquals("Escolaridade: mestrado", page.obterEscolaridadeCadastro());
 		assertEquals("Esportes: Natacao", page.obterEsporteCadastro());
 	}
-
-	@Test
-	public void deveValidarNomeObrigatorio() {
-		page.cadastrar();
-		assertEquals("Nome eh obrigatorio", dsl.alertaObterTextoEAceita());
-	}
-
-	@Test
-	public void deveValidarSobrenomeObrigatorio() {
-		page.setNome("Nome qualquer");
-		page.cadastrar();
-		assertEquals("Sobrenome eh obrigatorio", dsl.alertaObterTextoEAceita());
-	}
-
-	@Test
-	public void deveValidarSexoObrigatorio() {
-		page.setNome("Nome qualquer");
-		page.setSobrenome("Sobrenome qualquer");
-		page.cadastrar();
-		assertEquals("Sexo eh obrigatorio", dsl.alertaObterTextoEAceita());
-	}
-
-	@Test
-	public void deveValidarComidaVegetariana() {
-		page.setNome("Nome qualquer");
-		page.setSobrenome("Sobrenome qualquer");
-		page.setSexoFeminino();
-		page.setComidaFavoritaCarne();
-		page.setComidaFavoritaVegetariano();
-		page.cadastrar();
-		assertEquals("Tem certeza que voce eh vegetariano?", dsl.alertaObterTextoEAceita());
-	}
-
-	@Test
-	public void deveValidarEsportistaIndeciso() {
-		page.setNome("Nome qualquer");
-		page.setSobrenome("Sobrenome qualquer");
-		page.setSexoFeminino();
-		page.setComidaFavoritaCarne();
-		page.setEsporte("Karate", "O que eh esporte?");
-		page.cadastrar();
-		assertEquals("Voce faz esporte ou nao?", dsl.alertaObterTextoEAceita());
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
