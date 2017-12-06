@@ -1,5 +1,7 @@
 package automation;
 
+import static automation.core.DriverFactory.getDriver;
+import static automation.core.DriverFactory.killDriver;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
@@ -13,13 +15,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
+import automation.core.DSL;
 
 @RunWith(Parameterized.class)
 public class TesteRegrasCadastro {
-	private WebDriver driver;
 	private DSL dsl;
 	private CampoTreinamentoPage page;
 
@@ -38,17 +38,14 @@ public class TesteRegrasCadastro {
 
 	@Before
 	public void inicializa() {
-		System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().window().setSize(new Dimension(1200, 765));
-		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
-		page = new CampoTreinamentoPage(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL();
+		page = new CampoTreinamentoPage();
 	}
 
 	@After
 	public void finaliza() {
-		driver.quit();
+		killDriver();
 	}
 
 	@Parameters
