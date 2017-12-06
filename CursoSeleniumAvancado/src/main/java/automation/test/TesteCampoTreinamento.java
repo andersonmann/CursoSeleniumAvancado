@@ -1,4 +1,4 @@
-package automation;
+package automation.test;
 
 import static automation.core.DriverFactory.getDriver;
 import static automation.core.DriverFactory.killDriver;

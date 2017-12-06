@@ -1,18 +1,13 @@
 
-package automation;
+package automation.page;
 
-import automation.core.DSL;
+import automation.core.BasePage;
 
 /**
  * @author Anderson
  *
  */
-public class CampoTreinamentoPage {
-	private DSL dsl;
-
-	public CampoTreinamentoPage() {
-		dsl = new DSL();
-	}
+public class CampoTreinamentoPage extends BasePage {
 
 	/********* Cadastro nome ************/
 

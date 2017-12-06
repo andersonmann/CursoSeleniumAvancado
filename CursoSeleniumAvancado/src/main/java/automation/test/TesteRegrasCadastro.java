@@ -1,14 +1,12 @@
-package automation;
+package automation.test;
 
 import static automation.core.DriverFactory.getDriver;
-import static automation.core.DriverFactory.killDriver;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,10 +14,12 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import automation.core.BaseTest;
 import automation.core.DSL;
+import automation.page.CampoTreinamentoPage;
 
 @RunWith(Parameterized.class)
-public class TesteRegrasCadastro {
+public class TesteRegrasCadastro extends BaseTest {
 	private DSL dsl;
 	private CampoTreinamentoPage page;
 
@@ -41,11 +41,6 @@ public class TesteRegrasCadastro {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
 		page = new CampoTreinamentoPage();
-	}
-
-	@After
-	public void finaliza() {
-		killDriver();
 	}
 
 	@Parameters

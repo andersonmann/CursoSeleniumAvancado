@@ -1,25 +1,22 @@
-package automation;
+package automation.test;
 
 import static automation.core.DriverFactory.getDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TesteCadastro {
+import automation.core.BaseTest;
+import automation.page.CampoTreinamentoPage;
+
+public class TesteCadastro extends BaseTest {
 	private CampoTreinamentoPage page;
 
 	@Before
 	public void inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		page = new CampoTreinamentoPage();
-	}
-
-	@After
-	public void finaliza() {
-		
 	}
 
 	@Test
@@ -40,5 +37,4 @@ public class TesteCadastro {
 		assertEquals("Escolaridade: mestrado", page.obterEscolaridadeCadastro());
 		assertEquals("Esportes: Natacao", page.obterEsporteCadastro());
 	}
-
 }
